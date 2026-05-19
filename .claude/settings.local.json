@@ -1,0 +1,10 @@
+{
+  "permissions": {
+    "allow": [
+      "PowerShell(ls \"a:\\\\VSCode Projects\\\\Countdown\\\\node_modules\" | Where-Object { $_.Name -match \"vite|react\" } | Select-Object Name)",
+      "PowerShell(Get-ChildItem \"a:\\\\VSCode Projects\\\\Countdown\\\\node_modules\" -Directory | Where-Object { $_.Name -match \"vite|react|plugin\" } | Select-Object Name)",
+      "PowerShell(Set-Location \"a:\\\\VSCode Projects\\\\Countdown\" && npm run dev 2>&1 &)",
+      "PowerShell(node -e \"const v = require\\('a:/VSCode Projects/Countdown/node_modules/@vitejs/plugin-react/package.json'\\); console.log\\('@vitejs/plugin-react', v.version\\)\" 2>&1)"
+    ]
+  }
+}
