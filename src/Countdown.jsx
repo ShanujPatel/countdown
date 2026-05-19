@@ -11,7 +11,7 @@ function formatParts(ms) {
   return { days, hours, minutes, seconds }
 }
 
-export default function Countdown({ targetDate }) {
+export default function Countdown({ startDate, targetDate }) {
   const [now, setNow] = useState(() => new Date())
 
   useEffect(() => {
@@ -25,25 +25,34 @@ export default function Countdown({ targetDate }) {
   }
 
   const { days, hours, minutes, seconds } = formatParts(diff)
+  const total = targetDate - startDate
+  const elapsed = now - startDate
+  const progress = Math.min(100, Math.max(0, (elapsed / total) * 100))
 
   return (
-    <div className="countdown">
-      <div className="tile">
-        <div className="value">{days}</div>
-        <div className="label">Days</div>
+    <div className="countdown-wrapper">
+      <div className="countdown">
+        <div className="tile">
+          <div className="value">{days}</div>
+          <div className="label">Days</div>
+        </div>
+        <div className="tile">
+          <div className="value">{hours.toString().padStart(2, '0')}</div>
+          <div className="label">Hours</div>
+        </div>
+        <div className="tile">
+          <div className="value">{minutes.toString().padStart(2, '0')}</div>
+          <div className="label">Minutes</div>
+        </div>
+        <div className="tile">
+          <div className="value">{seconds.toString().padStart(2, '0')}</div>
+          <div className="label">Seconds</div>
+        </div>
       </div>
-      <div className="tile">
-        <div className="value">{hours.toString().padStart(2, '0')}</div>
-        <div className="label">Hours</div>
+      <div className="progress-track">
+        <div className="progress-fill" style={{ width: `${progress}%` }} />
       </div>
-      <div className="tile">
-        <div className="value">{minutes.toString().padStart(2, '0')}</div>
-        <div className="label">Minutes</div>
-      </div>
-      <div className="tile">
-        <div className="value">{seconds.toString().padStart(2, '0')}</div>
-        <div className="label">Seconds</div>
-      </div>
+      <div className="progress-label">{progress.toFixed(1)}% of the way there</div>
     </div>
   )
 }
