@@ -206,7 +206,8 @@ h1 {
   font-weight: 700;
   letter-spacing: 1px;
   color: var(--white);
-  align-self: flex-start;
+  width: 100%;
+  text-align: center;
 }
 
 .stats__grid {
