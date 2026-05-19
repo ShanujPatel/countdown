@@ -43,21 +43,25 @@ export default function Stats({ startDate, targetDate }) {
 
   return (
     <section className="stats">
-      <h2 className="stats__heading">Overview</h2>
-      <div className="stats__grid">
-        <StatCard label="Days Remaining"    value={daysLeft.toLocaleString()}    sub="until 27 Aug 2026"            icon={Calendar}     color="#fb4c68" />
-        <StatCard label="Hours Remaining"   value={hoursLeft.toLocaleString()}   sub="total hours left"             icon={Clock}        color="#60a5fa" />
-        <StatCard label="Weeks Remaining"   value={weeksLeft}                    sub={`+ ${extraDays} extra days`}  icon={Hash}         color="#34d399" />
-        <StatCard label="Minutes Remaining" value={minutesLeft.toLocaleString()} sub="total minutes left"           icon={Timer}        color="#f59e0b" />
-        <StatCard label="Months Remaining"  value={monthsLeft}                   sub="approx. calendar months"      icon={CalendarDays} color="#a78bfa" />
-        <StatCard label="Seconds Remaining" value={secondsLeft.toLocaleString()} sub="and counting…"                icon={Zap}          color="#fb923c" />
+      <div className="stats__group">
+        <h2 className="stats__heading">Overview</h2>
+        <div className="stats__grid">
+          <StatCard label="Days Remaining"    value={daysLeft.toLocaleString()}    sub="until 27 Aug 2026"            icon={Calendar}     color="#fb4c68" />
+          <StatCard label="Hours Remaining"   value={hoursLeft.toLocaleString()}   sub="total hours left"             icon={Clock}        color="#60a5fa" />
+          <StatCard label="Weeks Remaining"   value={weeksLeft}                    sub={`+ ${extraDays} extra days`}  icon={Hash}         color="#34d399" />
+          <StatCard label="Minutes Remaining" value={minutesLeft.toLocaleString()} sub="total minutes left"           icon={Timer}        color="#f59e0b" />
+          <StatCard label="Months Remaining"  value={monthsLeft}                   sub="approx. calendar months"      icon={CalendarDays} color="#a78bfa" />
+          <StatCard label="Seconds Remaining" value={secondsLeft.toLocaleString()} sub="and counting…"                icon={Zap}          color="#fb923c" />
+        </div>
       </div>
 
-      <h2 className="stats__heading">Progress Details</h2>
-      <div className="stats__grid">
-        <StatCard label="Days Elapsed"         value={daysElapsed}         sub="since 19 May 2026"          icon={TrendingUp}    color="#34d399" />
-        <StatCard label="Progress"             value={`${pctElapsed}%`}   sub={`of ${totalDays} total days`} icon={Target}       color="#fb923c" />
-        <StatCard label="Countdown Duration"   value={`${totalDays} days`} sub="total length"               icon={CalendarCheck} color="#a78bfa" />
+      <div className="stats__group">
+        <h2 className="stats__heading">Progress Details</h2>
+        <div className="stats__grid">
+          <StatCard label="Days Elapsed"       value={daysElapsed}          sub="since 19 May 2026"            icon={TrendingUp}    color="#34d399" />
+          <StatCard label="Progress"           value={`${pctElapsed}%`}    sub={`of ${totalDays} total days`}  icon={Target}        color="#fb923c" />
+          <StatCard label="Countdown Duration" value={`${totalDays} days`}  sub="total length"                 icon={CalendarCheck} color="#a78bfa" />
+        </div>
       </div>
     </section>
   )
