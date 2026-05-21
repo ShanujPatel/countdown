@@ -1,8 +1,85 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import Countdown from './Countdown'
 import Stats from './Stats'
 
+const faviconUrl = 'https://cdn-icons-png.flaticon.com/512/4222/4222979.png'
+
+function fallbackFaviconFrames() {
+  return [0, 1, 2, 1].map((step) => {
+    const scale = 1 + step * 0.08
+    const svg = `
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+        <rect width="64" height="64" rx="16" fill="#1a1a2e"/>
+        <g transform="translate(32 32) scale(${scale}) translate(-32 -32)">
+          <circle cx="32" cy="32" r="22" fill="#fb4c68"/>
+          <path d="M32 17v15l10 7" fill="none" stroke="#ffffff" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/>
+        </g>
+      </svg>
+    `
+
+    return `data:image/svg+xml,${encodeURIComponent(svg)}`
+  })
+}
+
+function useAnimatedFavicon() {
+  useEffect(() => {
+    const link = document.querySelector("link[rel='icon']")
+    if (!link) return undefined
+
+    const originalHref = link.href
+    let intervalId
+    let isCancelled = false
+
+    function startAnimation(frames) {
+      let frame = 0
+
+      intervalId = window.setInterval(() => {
+        link.href = frames[frame]
+        frame = (frame + 1) % frames.length
+      }, 420)
+    }
+
+    const img = new Image()
+    img.crossOrigin = 'anonymous'
+    img.onload = () => {
+      if (isCancelled) return
+
+      const canvas = document.createElement('canvas')
+      const size = 64
+      canvas.width = size
+      canvas.height = size
+      const ctx = canvas.getContext('2d')
+
+      try {
+        const frames = [0.86, 0.96, 1.04, 0.96].map((scale) => {
+          ctx.clearRect(0, 0, size, size)
+          const drawSize = size * scale
+          const offset = (size - drawSize) / 2
+          ctx.drawImage(img, offset, offset, drawSize, drawSize)
+          return canvas.toDataURL('image/png')
+        })
+
+        startAnimation(frames)
+      } catch {
+        startAnimation(fallbackFaviconFrames())
+      }
+    }
+    img.onerror = () => {
+      if (!isCancelled) startAnimation(fallbackFaviconFrames())
+    }
+    img.src = faviconUrl
+
+    return () => {
+      isCancelled = true
+      window.clearInterval(intervalId)
+      link.href = originalHref
+    }
+  }, [])
+}
+
 export default function App() {
+  useAnimatedFavicon()
+
   const start  = new Date(2026, 4, 19, 0, 0, 0)
   const target = new Date(2026, 7, 27, 0, 0, 0)
 

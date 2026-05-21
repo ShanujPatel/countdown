@@ -74,6 +74,7 @@ export default function Stats() {
           </span>
           <span>Mill Stats</span>
         </h2>
+        <div className="stats__divider" aria-hidden="true" />
         <figure className="stats__quote">
           <blockquote>"We are so cooked"</blockquote>
           <img
