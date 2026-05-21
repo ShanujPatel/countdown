@@ -51,7 +51,7 @@ export default function Stats() {
       <div className="stats__group">
         <h2 className="stats__heading">
           <HingeLogo />
-          <span>Hinge Stats</span>
+          <span>Hinge Stats <em className="stats__heading-accent">(since April 2022)</em></span>
         </h2>
         <div className="stats__grid">
           <StatCard label="Likes Sent" value="5,618" sub="outgoing likes" icon={Heart} color="#fb4c68" />
