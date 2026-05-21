@@ -1,6 +1,6 @@
 import { useMemo } from 'react'
 import {
-  Heart, MessageCircle, Sparkles, HeartCrack, Inbox, Percent,
+  Heart, MessageCircle, Sparkles, HeartCrack, Inbox, Percent, Reply, Send, Users,
 } from 'lucide-react'
 
 const quoteImages = [
@@ -47,12 +47,74 @@ function StatCard({ label, value, sub, icon: Icon, color }) {
   )
 }
 
+function LikesFlow() {
+  return (
+    <div className="likes-flow" aria-label="Likes sent flow to ignored likes and matches">
+      <div className="likes-flow__node likes-flow__node--sent">
+        <Heart size={20} color="#fb4c68" strokeWidth={1.7} />
+        <span>5,618 sent</span>
+      </div>
+      <div className="likes-flow__lines" aria-hidden="true">
+        <span className="likes-flow__line likes-flow__line--ignored" />
+        <span className="likes-flow__line likes-flow__line--matches" />
+      </div>
+      <div className="likes-flow__outcomes">
+        <div className="likes-flow__node likes-flow__node--ignored">
+          <HeartCrack size={20} color="#8385a9" strokeWidth={1.7} />
+          <span>5,501 ignored</span>
+        </div>
+        <div className="likes-flow__node likes-flow__node--matches">
+          <Sparkles size={20} color="#f59e0b" strokeWidth={1.7} />
+          <span>129 matches</span>
+        </div>
+      </div>
+    </div>
+  )
+}
+
+function DmFlow() {
+  return (
+    <div className="dm-flow" aria-label="Instagram DM flow from individuals messaged to stories liked and DMs sent to replies">
+      <div className="likes-flow__node">
+        <Users size={20} color="#60a5fa" strokeWidth={1.7} />
+        <span>1 individual</span>
+      </div>
+      <span className="dm-flow__line dm-flow__line--fork" aria-hidden="true" />
+      <div className="dm-flow__middle">
+        <div className="likes-flow__node">
+          <Heart size={20} color="#fb4c68" strokeWidth={1.7} />
+          <span>10 stories liked</span>
+        </div>
+        <div className="likes-flow__node">
+          <Send size={20} color="#a78bfa" strokeWidth={1.7} />
+          <span>2 DMs sent</span>
+        </div>
+      </div>
+      <span className="dm-flow__line dm-flow__line--straight" aria-hidden="true" />
+      <div className="likes-flow__node likes-flow__node--ignored">
+        <Reply size={20} color="#8385a9" strokeWidth={1.7} />
+        <span>0 replies</span>
+      </div>
+    </div>
+  )
+}
+
 function HingeLogo() {
   return (
     <img
       className="stats__logo"
       src="https://static.vecteezy.com/system/resources/thumbnails/068/706/030/small/hinge-circle-logo-editable-hinge-app-free-png.png"
       alt="Hinge"
+    />
+  )
+}
+
+function InstagramLogo() {
+  return (
+    <img
+      className="stats__logo"
+      src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/e7/Instagram_logo_2016.svg/1280px-Instagram_logo_2016.svg.png"
+      alt="Instagram"
     />
   )
 }
@@ -86,7 +148,22 @@ export default function Stats() {
   return (
     <section className="stats">
       <div className="stats__group">
-        <h2 className="stats__heading">
+        <nav className="stats__nav" aria-label="Stats sections">
+          <a href="#hinge-stats">
+            <HingeLogo />
+            <span>Hinge Stats</span>
+          </a>
+          <a href="#instagram-dm-stats">
+            <InstagramLogo />
+            <span>Instagram DM Stats</span>
+          </a>
+          <a href="#coming-soon-stats">
+            <BumbleLogo />
+            <DillLogo />
+            <span>Coming Soon</span>
+          </a>
+        </nav>
+        <h2 className="stats__heading" id="hinge-stats">
           <HingeLogo />
           <span>Hinge Stats <em className="stats__heading-accent">(since April 2022)</em></span>
         </h2>
@@ -98,11 +175,25 @@ export default function Stats() {
           <StatCard label="Like Success Rate" value="2.08%" sub="match conversion" icon={Percent} color="#34d399" />
           <StatCard label="Average Messages per Match" value="6.7" sub="messages per match" icon={MessageCircle} color="#a78bfa" />
         </div>
+        <LikesFlow />
+        <div className="stats__divider" aria-hidden="true" />
+        <h2 className="stats__heading" id="instagram-dm-stats">
+          <InstagramLogo />
+          <span>Instagram DM stats</span>
+        </h2>
+        <div className="stats__grid">
+          <StatCard label="Individuals Messaged" value="1" sub="people contacted" icon={Users} color="#60a5fa" />
+          <StatCard label="Liked Stories" value="10" sub="stories liked" icon={Heart} color="#fb4c68" />
+          <StatCard label="DMs Sent" value="2" sub="including replies to stories" icon={Send} color="#a78bfa" />
+          <StatCard label="Replies" value="0" sub="messages received" icon={Reply} color="#8385a9" />
+        </div>
+        <DmFlow />
+        <div className="stats__divider" aria-hidden="true" />
         <div className="chat-quotes chat-quotes--hidden">
           <h2 className="stats__heading">Best Quotes from Hinge Chats</h2>
           <blockquote className="chat-quotes__quote">"Were you born in the UK btw"</blockquote>
         </div>
-        <h2 className="stats__heading">
+        <h2 className="stats__heading" id="coming-soon-stats">
           <span>Coming Soon....</span>
           <span className="stats__heading-inline">
             <BumbleLogo />
