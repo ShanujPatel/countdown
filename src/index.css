@@ -275,7 +275,7 @@ h1 {
 }
 
 .stats__quote blockquote {
-  font-size: 18px;
+  font-size: 28px;
   color: var(--white);
   letter-spacing: 1px;
 }
@@ -309,7 +309,7 @@ h1 {
   .tile__notch--r { right: -5px; }
   .stats__grid { grid-template-columns: repeat(2, 1fr); }
   .stat-card__value { font-size: 28px; }
-  .stats__quote blockquote { font-size: 16px; }
+  .stats__quote blockquote { font-size: 22px; }
 }
 
 @media (max-width: 400px) {
