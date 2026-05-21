@@ -305,9 +305,13 @@ h1 {
 }
 
 .stats__quote blockquote {
+  font-family: Georgia, 'Times New Roman', serif;
   font-size: 28px;
+  font-style: italic;
+  font-weight: 400;
   color: var(--white);
-  letter-spacing: 1px;
+  letter-spacing: 0;
+  line-height: 1.25;
 }
 
 .stats__quote img {
