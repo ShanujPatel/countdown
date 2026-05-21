@@ -202,9 +202,9 @@ export default function Stats() {
           <span>and</span>
           <span className="stats__heading-inline">
             <DillLogo />
-            <span>Dill</span>
+            <span>Dill Mill Stats</span>
           </span>
-          <span>Mill Stats</span>
+          <span></span>
         </h2>
         <div className="stats__divider" aria-hidden="true" />
         <figure className="stats__quote">
