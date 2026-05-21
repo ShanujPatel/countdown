@@ -28,6 +28,13 @@ export default function Stats() {
           <StatCard label="Like Success Rate" value="2.08%" sub="match conversion" icon={Percent} color="#34d399" />
           <StatCard label="Average Messages per Match" value="6.7" sub="messages per match" icon={MessageCircle} color="#a78bfa" />
         </div>
+        <figure className="stats__quote">
+          <blockquote>We are so cooked?</blockquote>
+          <img
+            src="https://i.kym-cdn.com/entries/icons/original/000/052/772/dog_closing_eyes_meme_cover.jpg"
+            alt="Dog closing eyes meme"
+          />
+        </figure>
       </div>
     </section>
   )
