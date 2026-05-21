@@ -81,7 +81,7 @@ export default function Countdown({ startDate, targetDate }) {
       <div className="progress-track">
         <div className="progress-fill" style={{ width: `${progress}%` }} />
       </div>
-      <p className="progress-label">{progress.toFixed(1)}% of the way there</p>
+      <p className="progress-label">{progress.toFixed(1)}% of the way there to an arranged marriage</p>
     </>
   )
 }
