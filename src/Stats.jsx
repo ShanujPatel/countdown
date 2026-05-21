@@ -15,11 +15,44 @@ function StatCard({ label, value, sub, icon: Icon, color }) {
   )
 }
 
+function HingeLogo() {
+  return (
+    <img
+      className="stats__logo"
+      src="https://static.vecteezy.com/system/resources/thumbnails/068/706/030/small/hinge-circle-logo-editable-hinge-app-free-png.png"
+      alt="Hinge"
+    />
+  )
+}
+
+function BumbleLogo() {
+  return (
+    <img
+      className="stats__logo stats__logo--bumble"
+      src="https://miro.medium.com/v2/resize:fit:400/1*Y2B1BqOaSBRv-XC5B5RquQ.png"
+      alt="Bumble"
+    />
+  )
+}
+
+function DillLogo() {
+  return (
+    <img
+      className="stats__logo stats__logo--dill"
+      src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTF7Nv2H8eOhagCb5z8dNPQl3ArzDBUcEr1Wg&s"
+      alt="Dill"
+    />
+  )
+}
+
 export default function Stats() {
   return (
     <section className="stats">
       <div className="stats__group">
-        <h2 className="stats__heading">Hinge Stats</h2>
+        <h2 className="stats__heading">
+          <HingeLogo />
+          <span>Hinge Stats</span>
+        </h2>
         <div className="stats__grid">
           <StatCard label="Likes Sent" value="5,618" sub="outgoing likes" icon={Heart} color="#fb4c68" />
           <StatCard label="Likes Ignored" value="5,501" sub="no match recorded" icon={HeartCrack} color="#8385a9" />
@@ -28,6 +61,19 @@ export default function Stats() {
           <StatCard label="Like Success Rate" value="2.08%" sub="match conversion" icon={Percent} color="#34d399" />
           <StatCard label="Average Messages per Match" value="6.7" sub="messages per match" icon={MessageCircle} color="#a78bfa" />
         </div>
+        <h2 className="stats__heading">
+          <span>Coming Soon....</span>
+          <span className="stats__heading-inline">
+            <BumbleLogo />
+            <span>Bumble</span>
+          </span>
+          <span>and</span>
+          <span className="stats__heading-inline">
+            <DillLogo />
+            <span>Dill</span>
+          </span>
+          <span>Mill Stats</span>
+        </h2>
         <figure className="stats__quote">
           <blockquote>"We are so cooked"</blockquote>
           <img
