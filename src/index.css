@@ -24,6 +24,59 @@ body {
   min-height: 100%;
   display: flex;
   justify-content: center;
+  position: relative;
+}
+
+body::before,
+body::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  background-repeat: repeat;
+  z-index: -1;
+}
+
+body::before {
+  background-image:
+    radial-gradient(circle, rgba(255, 255, 255, 0.9) 1px, transparent 1.5px),
+    radial-gradient(circle, rgba(255, 255, 255, 0.75) 1px, transparent 1.5px);
+  background-position: 24px 38px, 112px 86px;
+  background-size: 180px 160px, 260px 220px;
+  animation: star-blink-drift-a 6s ease-in-out infinite;
+}
+
+body::after {
+  background-image:
+    radial-gradient(circle, rgba(255, 255, 255, 0.65) 1px, transparent 1.5px),
+    radial-gradient(circle, rgba(255, 255, 255, 0.85) 1px, transparent 1.5px);
+  background-position: 74px 122px, 210px 44px;
+  background-size: 220px 190px, 320px 260px;
+  animation: star-blink-drift-b 7.4s ease-in-out infinite 1.2s;
+}
+
+@keyframes star-blink-drift-a {
+  0%, 100% { opacity: 0.12; }
+  45% {
+    opacity: 1;
+    background-position: 38px 26px, 96px 104px;
+  }
+  70% {
+    opacity: 0.34;
+    background-position: 18px 52px, 126px 76px;
+  }
+}
+
+@keyframes star-blink-drift-b {
+  0%, 100% { opacity: 0.12; }
+  45% {
+    opacity: 1;
+    background-position: 58px 134px, 226px 30px;
+  }
+  70% {
+    opacity: 0.34;
+    background-position: 88px 108px, 196px 58px;
+  }
 }
 
 #root {
