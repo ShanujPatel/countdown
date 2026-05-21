@@ -20,7 +20,6 @@ html { height: 100%; }
 body {
   font-family: 'Red Hat Text', system-ui, sans-serif;
   background-color: var(--bg);
-  background-image: linear-gradient(180deg, #1e2a4a 0%, #1a1a2e 35%);
   color: var(--white);
   min-height: 100%;
   display: flex;
