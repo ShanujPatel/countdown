@@ -1,6 +1,38 @@
+import { useMemo } from 'react'
 import {
   Heart, MessageCircle, Sparkles, HeartCrack, Inbox, Percent,
 } from 'lucide-react'
+
+const quoteImages = [
+  {
+    src: 'https://i.kym-cdn.com/entries/icons/original/000/052/772/dog_closing_eyes_meme_cover.jpg',
+    alt: 'Dog closing eyes meme',
+  },
+  {
+    src: 'https://media2.giphy.com/media/v1.Y2lkPTc5MGI3NjExcHhmMGk1eDlkdGN6NHo4ZjlhdWVpbW5xbWUyZ21tcjN0cHhhYjBvZiZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/W0c3xcZ3F1d0EYYb0f/giphy.gif',
+    alt: 'Animated reaction GIF',
+  },
+  {
+    src: 'https://media2.giphy.com/media/v1.Y2lkPTc5MGI3NjExbTd5OWJraXQxMDhnZnpvNmV0MGZ6ZG5oNjVmcHRka2c3OXBnb2ZnMiZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/VJBd91kUU5FJtcDUvL/giphy.gif',
+    alt: 'Animated reaction GIF',
+  },
+  {
+    src: 'https://media.tenor.com/c_YU3p6py2AAAAAM/meme-crying.gif',
+    alt: 'Crying meme GIF',
+  },
+  {
+    src: 'https://www.audiosciencereview.com/forum/index.php?attachments/330903/',
+    alt: 'Reaction meme',
+  },
+  {
+    src: 'https://media.tenor.com/kMUhWQeutnkAAAAM/true.gif',
+    alt: 'True reaction GIF',
+  },
+  {
+    src: 'https://media.tenor.com/V7-gVNsD2EAAAAAM/michael-scott-the-office.gif',
+    alt: 'Michael Scott reaction GIF',
+  },
+]
 
 function StatCard({ label, value, sub, icon: Icon, color }) {
   return (
@@ -46,6 +78,11 @@ function DillLogo() {
 }
 
 export default function Stats() {
+  const quoteImage = useMemo(
+    () => quoteImages[Math.floor(Math.random() * quoteImages.length)],
+    [],
+  )
+
   return (
     <section className="stats">
       <div className="stats__group">
@@ -82,8 +119,8 @@ export default function Stats() {
         <figure className="stats__quote">
           <blockquote>"We are so cooked"</blockquote>
           <img
-            src="https://i.kym-cdn.com/entries/icons/original/000/052/772/dog_closing_eyes_meme_cover.jpg"
-            alt="Dog closing eyes meme"
+            src={quoteImage.src}
+            alt={quoteImage.alt}
           />
         </figure>
       </div>
