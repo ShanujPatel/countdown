@@ -61,6 +61,10 @@ export default function Stats() {
           <StatCard label="Like Success Rate" value="2.08%" sub="match conversion" icon={Percent} color="#34d399" />
           <StatCard label="Average Messages per Match" value="6.7" sub="messages per match" icon={MessageCircle} color="#a78bfa" />
         </div>
+        <div className="chat-quotes chat-quotes--hidden">
+          <h2 className="stats__heading">Best Quotes from Hinge Chats</h2>
+          <blockquote className="chat-quotes__quote">"Were you born in the UK btw"</blockquote>
+        </div>
         <h2 className="stats__heading">
           <span>Coming Soon....</span>
           <span className="stats__heading-inline">
