@@ -4,6 +4,47 @@ import Stats from './Stats'
 
 const faviconUrl = 'https://cdn-icons-png.flaticon.com/512/4222/4222979.png'
 
+function randomBetween(min, max) {
+  return Math.round(min + Math.random() * (max - min))
+}
+
+function randomPositionPair() {
+  return `${randomBetween(0, 260)}px ${randomBetween(0, 180)}px, ${randomBetween(80, 360)}px ${randomBetween(20, 260)}px`
+}
+
+function randomBackgroundSize() {
+  return `${randomBetween(160, 240)}px ${randomBetween(140, 220)}px, ${randomBetween(240, 360)}px ${randomBetween(200, 320)}px`
+}
+
+function useRandomStars() {
+  useEffect(() => {
+    const root = document.documentElement
+    const starVars = {
+      '--stars-a-start': randomPositionPair(),
+      '--stars-a-mid': randomPositionPair(),
+      '--stars-a-late': randomPositionPair(),
+      '--stars-a-size': randomBackgroundSize(),
+      '--stars-a-duration': `${randomBetween(12, 18)}s`,
+      '--stars-b-start': randomPositionPair(),
+      '--stars-b-mid': randomPositionPair(),
+      '--stars-b-late': randomPositionPair(),
+      '--stars-b-size': randomBackgroundSize(),
+      '--stars-b-duration': `${randomBetween(14, 22)}s`,
+      '--stars-b-delay': `${(Math.random() * 2).toFixed(1)}s`,
+    }
+
+    Object.entries(starVars).forEach(([name, value]) => {
+      root.style.setProperty(name, value)
+    })
+
+    return () => {
+      Object.keys(starVars).forEach((name) => {
+        root.style.removeProperty(name)
+      })
+    }
+  }, [])
+}
+
 function fallbackFaviconFrames() {
   return [0, 1, 2, 1].map((step) => {
     const scale = 1 + step * 0.08
@@ -79,6 +120,7 @@ function useAnimatedFavicon() {
 
 export default function App() {
   useAnimatedFavicon()
+  useRandomStars()
 
   const start  = new Date(2026, 4, 19, 0, 0, 0)
   const target = new Date(2026, 7, 27, 0, 0, 0)
