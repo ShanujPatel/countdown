@@ -1,6 +1,6 @@
 import { useMemo } from 'react'
 import {
-  Heart, MessageCircle, Sparkles, HeartCrack, Inbox, Percent, Reply, Send, Users,
+  Heart, MessageCircle, Sparkles, HeartCrack, Inbox, Percent, Reply, Send, Users, ThumbsDown,
 } from 'lucide-react'
 
 const quoteImages = [
@@ -153,12 +153,15 @@ export default function Stats() {
             <HingeLogo />
             <span>Hinge Stats</span>
           </a>
+          <a href="#bumble-stats">
+            <BumbleLogo />
+            <span>Bumble Stats</span>
+          </a>
           <a href="#instagram-dm-stats">
             <InstagramLogo />
             <span>Instagram DM Stats</span>
           </a>
           <a href="#coming-soon-stats">
-            <BumbleLogo />
             <DillLogo />
             <span>Coming Soon</span>
           </a>
@@ -176,6 +179,16 @@ export default function Stats() {
           <StatCard label="Average Messages per Match" value="6.7" sub="messages per match" icon={MessageCircle} color="#a78bfa" />
         </div>
         <LikesFlow />
+        <div className="stats__divider" aria-hidden="true" />
+        <h2 className="stats__heading" id="bumble-stats">
+          <BumbleLogo />
+          <span>Bumble Stats</span>
+        </h2>
+        <div className="stats__grid">
+          <StatCard label="Likes Sent" value="4,796" sub="outgoing likes" icon={Heart} color="#fb4c68" />
+          <StatCard label="Likes Received" value="166" sub="incoming likes" icon={Inbox} color="#60a5fa" />
+          <StatCard label="Incoming No's" value="23,792" sub="swiped left on you" icon={ThumbsDown} color="#8385a9" />
+        </div>
         <div className="stats__divider" aria-hidden="true" />
         <h2 className="stats__heading" id="instagram-dm-stats">
           <InstagramLogo />
@@ -196,15 +209,9 @@ export default function Stats() {
         <h2 className="stats__heading" id="coming-soon-stats">
           <span>Coming Soon....</span>
           <span className="stats__heading-inline">
-            <BumbleLogo />
-            <span>Bumble</span>
-          </span>
-          <span>and</span>
-          <span className="stats__heading-inline">
             <DillLogo />
             <span>Dill Mill Stats</span>
           </span>
-          <span></span>
         </h2>
         <div className="stats__divider" aria-hidden="true" />
         <figure className="stats__quote">

@@ -97,6 +97,55 @@ body::after {
   align-items: center;
   gap: 56px;
   padding: 80px 24px 80px;
+  position: relative;
+  z-index: 1;
+}
+
+.comet {
+  position: fixed;
+  top: 16%;
+  left: -180px;
+  width: 150px;
+  height: 3px;
+  pointer-events: none;
+  border-radius: 999px;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.82), #ffffff);
+  filter: drop-shadow(0 0 8px rgba(255, 255, 255, 0.55));
+  opacity: 0;
+  transform: rotate(-18deg);
+  animation: comet-flight 9.5s ease-in-out infinite 1.4s;
+  z-index: -1;
+}
+
+.comet::after {
+  content: "";
+  position: absolute;
+  right: -3px;
+  top: 50%;
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: #ffffff;
+  transform: translateY(-50%);
+  box-shadow: 0 0 14px rgba(255, 255, 255, 0.85);
+}
+
+@keyframes comet-flight {
+  0%, 18% {
+    opacity: 0;
+    transform: translate3d(0, 0, 0) rotate(-18deg);
+  }
+  24% {
+    opacity: 1;
+  }
+  42% {
+    opacity: 0.95;
+    transform: translate3d(calc(100vw + 360px), 36vh, 0) rotate(-18deg);
+  }
+  48%, 100% {
+    opacity: 0;
+    transform: translate3d(calc(100vw + 360px), 36vh, 0) rotate(-18deg);
+  }
 }
 
 /* ── Hero (countdown section) ───────────────── */

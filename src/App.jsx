@@ -127,6 +127,7 @@ export default function App() {
 
   return (
     <div className="app">
+      <div className="comet" aria-hidden="true" />
       <section className="hero">
         <h1>Countdown to 27/08/2026</h1>
         <Countdown startDate={start} targetDate={target} />
