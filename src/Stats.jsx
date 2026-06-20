@@ -182,7 +182,7 @@ export default function Stats() {
         <div className="stats__divider" aria-hidden="true" />
         <h2 className="stats__heading" id="bumble-stats">
           <BumbleLogo />
-          <span>Bumble Stats</span>
+          <span>Bumble Stats <em className="stats__heading-accent">(since February 2021)</em></span>
         </h2>
         <div className="stats__grid">
           <StatCard label="Likes Sent" value="4,796" sub="outgoing likes" icon={Heart} color="#fb4c68" />
