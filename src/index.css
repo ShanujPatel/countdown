@@ -385,22 +385,10 @@ h1 {
 }
 
 .stats__logo--bumble,
-.stats__logo--dill {
+.stats__logo--dill,
+.stats__logo--shaadi {
   border-radius: 8px;
   object-fit: cover;
-}
-
-/* Wide wordmark: let it keep its aspect ratio instead of squashing into a square */
-.stats__heading .stats__logo--shaadi {
-  width: auto;
-  height: 24px;
-  flex: 0 0 auto;
-}
-
-.stats__nav .stats__logo--shaadi {
-  width: auto;
-  height: 16px;
-  flex-basis: auto;
 }
 
 .stats__grid {

@@ -211,7 +211,7 @@ function ShaadiLogo() {
   return (
     <img
       className="stats__logo stats__logo--shaadi"
-      src="https://upload.wikimedia.org/wikipedia/commons/thumb/d/df/New_logo_of_Shaadi.svg/500px-New_logo_of_Shaadi.svg.png"
+      src="https://pbs.twimg.com/profile_images/2029543559385473025/Ne_8LB2W_400x400.jpg"
       alt="Shaadi.com"
     />
   )
@@ -348,9 +348,9 @@ export default function Stats() {
           <span>Shaadi.com Stats</span>
         </h2>
         <div className="stats__grid">
-          <StatCard label="Interests Sent" value="—" sub="outgoing interests" icon={Send} color="#a78bfa" />
-          <StatCard label="Interests Received" value="—" sub="incoming interests" icon={Inbox} color="#60a5fa" />
-          <StatCard label="Accepted" value="—" sub="mutual interests" icon={UserCheck} color="#34d399" />
+          <StatCard label="Requests Sent" value="—" sub="outgoing requests" icon={Send} color="#a78bfa" />
+          <StatCard label="Requests Received" value="—" sub="incoming requests" icon={Inbox} color="#60a5fa" />
+          <StatCard label="Requests Accepted" value="—" sub="mutual requests" icon={UserCheck} color="#34d399" />
           <StatCard label="Matches" value="—" sub="connections made" icon={Sparkles} color="#f59e0b" />
         </div>
         <div className="stats__divider" aria-hidden="true" />
