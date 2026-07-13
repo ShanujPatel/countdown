@@ -171,12 +171,12 @@ export default function Stats() {
           <span>Hinge Stats <em className="stats__heading-accent">(since April 2022)</em></span>
         </h2>
         <div className="stats__grid">
-          <StatCard label="Likes Sent" value="5,618" sub="outgoing likes" icon={Heart} color="#fb4c68" />
-          <StatCard label="Likes Ignored" value="5,501" sub="no match recorded" icon={HeartCrack} color="#8385a9" />
-          <StatCard label="Likes Received" value="144" sub="incoming likes" icon={Inbox} color="#60a5fa" />
-          <StatCard label="Matches" value="129" sub="likes sent and received" icon={Sparkles} color="#f59e0b" />
-          <StatCard label="Like Success Rate" value="2.08%" sub="match conversion" icon={Percent} color="#34d399" />
-          <StatCard label="Average Messages per Match" value="6.7" sub="messages per match" icon={MessageCircle} color="#a78bfa" />
+          <StatCard label="Likes Sent" value="6,211" sub="outgoing likes" icon={Heart} color="#fb4c68" />
+          <StatCard label="Likes Ignored" value="6,085" sub="no match recorded" icon={HeartCrack} color="#8385a9" />
+          <StatCard label="Likes Received" value="149" sub="incoming likes" icon={Inbox} color="#60a5fa" />
+          <StatCard label="Matches" value="138" sub="likes sent and received" icon={Sparkles} color="#f59e0b" />
+          <StatCard label="Like Success Rate" value="2.05%" sub="match conversion" icon={Percent} color="#34d399" />
+          <StatCard label="Average Messages per Match" value="6.6" sub="messages per match" icon={MessageCircle} color="#a78bfa" />
         </div>
         <LikesFlow />
         <div className="stats__divider" aria-hidden="true" />
