@@ -405,6 +405,7 @@ h1 {
 
 /* ── Stat card ──────────────────────────────── */
 .stat-card {
+  position: relative;
   background-color: rgba(255, 255, 255, 0.03);
   background-image: radial-gradient(circle, rgba(255,255,255,0.04) 1px, transparent 1px);
   background-size: 24px 24px;
@@ -415,6 +416,130 @@ h1 {
   flex-direction: column;
   gap: 12px;
   min-height: 140px;
+}
+
+.stat-card--trackable {
+  cursor: pointer;
+}
+
+/* Small dot cue that a card has a trend graph on hover */
+.stat-card--trackable::after {
+  content: '';
+  position: absolute;
+  top: 14px;
+  right: 14px;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.28);
+  transition: background 0.2s ease;
+}
+
+.stat-card--trackable:hover::after {
+  background: var(--white);
+}
+
+/* ── Hover trend chart ──────────────────────── */
+.stat-card__chart {
+  position: absolute;
+  left: 50%;
+  bottom: calc(100% + 10px);
+  transform: translate(-50%, 6px);
+  width: min(300px, calc(100vw - 40px));
+  padding: 14px 16px 12px;
+  border-radius: 12px;
+  background: #14151f;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 0 18px 40px rgba(0, 0, 0, 0.5);
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transition: opacity 0.18s ease, transform 0.18s ease;
+  z-index: 20;
+}
+
+.stat-card--trackable:hover .stat-card__chart {
+  opacity: 1;
+  visibility: visible;
+  transform: translate(-50%, 0);
+}
+
+/* Little arrow pointing down at the card */
+.stat-card__chart::after {
+  content: '';
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  border: 7px solid transparent;
+  border-top-color: #14151f;
+}
+
+.stat-card__chart-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--muted);
+  margin-bottom: 10px;
+}
+
+.stat-card__delta {
+  font-size: 12px;
+  font-weight: 700;
+  padding: 1px 7px;
+  border-radius: 999px;
+}
+
+.stat-card__delta.is-up {
+  color: #34d399;
+  background: rgba(52, 211, 153, 0.14);
+}
+
+.stat-card__delta.is-down {
+  color: #fb4c68;
+  background: rgba(251, 76, 104, 0.14);
+}
+
+.stat-card__chart-foot {
+  display: flex;
+  justify-content: space-between;
+  font-size: 11px;
+  color: var(--muted);
+  margin-top: 8px;
+}
+
+.stat-card__chart-empty {
+  font-size: 12px;
+  color: var(--muted);
+  line-height: 1.4;
+  margin: 4px 0;
+}
+
+.sparkline {
+  display: block;
+  width: 100%;
+  height: 90px;
+  overflow: visible;
+}
+
+.sparkline__area {
+  opacity: 0.16;
+}
+
+.sparkline__line {
+  fill: none;
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.sparkline__pulse {
+  fill: none;
+  stroke-width: 1.5;
+  opacity: 0.5;
 }
 
 .stat-card__header {

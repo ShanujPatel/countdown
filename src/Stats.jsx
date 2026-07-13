@@ -34,15 +34,93 @@ const quoteImages = [
   },
 ]
 
-function StatCard({ label, value, sub, icon: Icon, color }) {
+function formatMonth(date) {
+  const [year, month] = date.split('-')
+  const names = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
+  return `${names[Number(month) - 1]} ${year}`
+}
+
+function Sparkline({ history, color, format }) {
+  const width = 260
+  const height = 90
+  const pad = 10
+  const values = history.map((point) => point.value)
+  const min = Math.min(...values)
+  const max = Math.max(...values)
+  const range = max - min || 1
+  const stepX = (width - pad * 2) / Math.max(history.length - 1, 1)
+
+  const coords = history.map((point, index) => {
+    const x = history.length === 1 ? width / 2 : pad + index * stepX
+    const y = height - pad - ((point.value - min) / range) * (height - pad * 2)
+    return { x, y, point }
+  })
+
+  const line = coords
+    .map(({ x, y }, index) => `${index === 0 ? 'M' : 'L'}${x.toFixed(1)} ${y.toFixed(1)}`)
+    .join(' ')
+  const area = `${line} L${coords[coords.length - 1].x.toFixed(1)} ${height - pad} L${coords[0].x.toFixed(1)} ${height - pad} Z`
+  const last = coords[coords.length - 1]
+
   return (
-    <div className="stat-card">
+    <svg
+      className="sparkline"
+      viewBox={`0 0 ${width} ${height}`}
+      role="img"
+      aria-label="Trend over time"
+      preserveAspectRatio="none"
+    >
+      <path className="sparkline__area" d={area} fill={color} />
+      <path className="sparkline__line" d={line} stroke={color} />
+      {coords.map(({ x, y }, index) => (
+        <circle key={index} cx={x} cy={y} r={index === coords.length - 1 ? 3.5 : 2} fill={color} />
+      ))}
+      <circle className="sparkline__pulse" cx={last.x} cy={last.y} r={5} stroke={color} />
+    </svg>
+  )
+}
+
+function StatChart({ label, history, color, format }) {
+  const first = history[0]
+  const last = history[history.length - 1]
+  const delta = last.value - first.value
+  const sign = delta > 0 ? '+' : ''
+  const fmt = format || ((value) => value.toLocaleString())
+
+  return (
+    <div className="stat-card__chart" role="tooltip">
+      <div className="stat-card__chart-head">
+        <span>{label} over time</span>
+        {history.length > 1 && (
+          <span className={`stat-card__delta ${delta >= 0 ? 'is-up' : 'is-down'}`}>
+            {sign}{fmt(delta)}
+          </span>
+        )}
+      </div>
+      {history.length > 1 ? (
+        <Sparkline history={history} color={color} format={fmt} />
+      ) : (
+        <p className="stat-card__chart-empty">Only one snapshot so far — trend appears once more are logged.</p>
+      )}
+      <div className="stat-card__chart-foot">
+        <span>{formatMonth(first.date)}</span>
+        <span>{formatMonth(last.date)}</span>
+      </div>
+    </div>
+  )
+}
+
+function StatCard({ label, value, sub, icon: Icon, color, history, format }) {
+  const trackable = Array.isArray(history) && history.length > 0
+  return (
+    <div className={`stat-card${trackable ? ' stat-card--trackable' : ''}`}>
       <div className="stat-card__header">
         <span className="stat-card__label">{label}</span>
         <Icon size={22} color={color} strokeWidth={1.5} />
       </div>
       <div className="stat-card__value">{value}</div>
       {sub && <p className="stat-card__sub">{sub}</p>}
+      {trackable && <StatChart label={label} history={history} color={color} format={format} />}
     </div>
   )
 }
@@ -139,6 +217,58 @@ function DillLogo() {
   )
 }
 
+// Each stat keeps a `history` of dated snapshots so the hover graph can plot the trend.
+// To add a data point, append { date: 'YYYY-MM', value: <number> } — keep them in chronological order.
+const percent = (value) => `${value.toFixed(2)}%`
+const decimal = (value) => value.toFixed(1)
+
+const hingeStats = [
+  {
+    label: 'Likes Sent', value: '6,211', sub: 'outgoing likes', icon: Heart, color: '#fb4c68',
+    history: [
+      { date: '2026-05', value: 5618 },
+      { date: '2026-07', value: 6211 },
+    ],
+  },
+  {
+    label: 'Likes Ignored', value: '6,085', sub: 'no match recorded', icon: HeartCrack, color: '#8385a9',
+    history: [
+      { date: '2026-05', value: 5501 },
+      { date: '2026-07', value: 6085 },
+    ],
+  },
+  {
+    label: 'Likes Received', value: '149', sub: 'incoming likes', icon: Inbox, color: '#60a5fa',
+    history: [
+      { date: '2026-05', value: 144 },
+      { date: '2026-07', value: 149 },
+    ],
+  },
+  {
+    label: 'Matches', value: '138', sub: 'likes sent and received', icon: Sparkles, color: '#f59e0b',
+    history: [
+      { date: '2026-05', value: 129 },
+      { date: '2026-07', value: 138 },
+    ],
+  },
+  {
+    label: 'Like Success Rate', value: '2.05%', sub: 'match conversion', icon: Percent, color: '#34d399',
+    format: percent,
+    history: [
+      { date: '2026-05', value: 2.08 },
+      { date: '2026-07', value: 2.05 },
+    ],
+  },
+  {
+    label: 'Average Messages per Match', value: '6.6', sub: 'messages per match', icon: MessageCircle, color: '#a78bfa',
+    format: decimal,
+    history: [
+      { date: '2026-05', value: 6.7 },
+      { date: '2026-07', value: 6.6 },
+    ],
+  },
+]
+
 export default function Stats() {
   const quoteImage = useMemo(
     () => quoteImages[Math.floor(Math.random() * quoteImages.length)],
@@ -171,12 +301,9 @@ export default function Stats() {
           <span>Hinge Stats <em className="stats__heading-accent">(since April 2022)</em></span>
         </h2>
         <div className="stats__grid">
-          <StatCard label="Likes Sent" value="6,211" sub="outgoing likes" icon={Heart} color="#fb4c68" />
-          <StatCard label="Likes Ignored" value="6,085" sub="no match recorded" icon={HeartCrack} color="#8385a9" />
-          <StatCard label="Likes Received" value="149" sub="incoming likes" icon={Inbox} color="#60a5fa" />
-          <StatCard label="Matches" value="138" sub="likes sent and received" icon={Sparkles} color="#f59e0b" />
-          <StatCard label="Like Success Rate" value="2.05%" sub="match conversion" icon={Percent} color="#34d399" />
-          <StatCard label="Average Messages per Match" value="6.6" sub="messages per match" icon={MessageCircle} color="#a78bfa" />
+          {hingeStats.map((stat) => (
+            <StatCard key={stat.label} {...stat} />
+          ))}
         </div>
         <LikesFlow />
         <div className="stats__divider" aria-hidden="true" />
