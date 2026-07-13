@@ -390,6 +390,19 @@ h1 {
   object-fit: cover;
 }
 
+/* Wide wordmark: let it keep its aspect ratio instead of squashing into a square */
+.stats__heading .stats__logo--shaadi {
+  width: auto;
+  height: 24px;
+  flex: 0 0 auto;
+}
+
+.stats__nav .stats__logo--shaadi {
+  width: auto;
+  height: 16px;
+  flex-basis: auto;
+}
+
 .stats__grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
