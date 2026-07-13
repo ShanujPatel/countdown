@@ -52,7 +52,7 @@ function LikesFlow() {
     <div className="likes-flow" aria-label="Likes sent flow to ignored likes and matches">
       <div className="likes-flow__node likes-flow__node--sent">
         <Heart size={20} color="#fb4c68" strokeWidth={1.7} />
-        <span>5,618 sent</span>
+        <span>6,211 sent</span>
       </div>
       <div className="likes-flow__lines" aria-hidden="true">
         <span className="likes-flow__line likes-flow__line--ignored" />
@@ -61,11 +61,11 @@ function LikesFlow() {
       <div className="likes-flow__outcomes">
         <div className="likes-flow__node likes-flow__node--ignored">
           <HeartCrack size={20} color="#8385a9" strokeWidth={1.7} />
-          <span>5,501 ignored</span>
+          <span>6,085 ignored</span>
         </div>
         <div className="likes-flow__node likes-flow__node--matches">
           <Sparkles size={20} color="#f59e0b" strokeWidth={1.7} />
-          <span>129 matches</span>
+          <span>138 matches</span>
         </div>
       </div>
     </div>
