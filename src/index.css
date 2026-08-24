@@ -313,7 +313,9 @@ h1 {
 
 .stats__nav {
   align-self: center;
-  display: inline-flex;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
   gap: 8px;
   margin-bottom: 20px;
   padding: 6px;
@@ -856,7 +858,7 @@ h1 {
     width: min(100%, 360px);
   }
   .stats__nav a {
-    flex: 1;
+    flex: 0 1 auto;
     padding: 0 10px;
     text-align: center;
   }
