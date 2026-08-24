@@ -699,10 +699,10 @@ h1 {
 
 /* ── DM flow ────────────────────────────────── */
 .dm-flow {
-  width: min(100%, 820px);
+  width: min(100%, 900px);
   align-self: center;
   display: grid;
-  grid-template-columns: minmax(220px, 315px) minmax(120px, 180px) minmax(220px, 1fr) minmax(120px, 180px) minmax(220px, 1fr);
+  grid-template-columns: minmax(150px, 240px) minmax(56px, 120px) minmax(150px, 1fr) minmax(56px, 120px) minmax(150px, 1fr) minmax(56px, 120px) minmax(150px, 1fr);
   align-items: end;
   gap: 22px;
   padding: 8px 0 4px;

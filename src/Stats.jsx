@@ -1,7 +1,7 @@
 import { useMemo } from 'react'
 import {
   Heart, MessageCircle, Sparkles, HeartCrack, Inbox, Percent, Reply, Send, Users, ThumbsDown, UserCheck, Crown,
-  Calendar, CalendarHeart, CalendarX, Video, Repeat,
+  Calendar, CalendarHeart, CalendarX, Video, Repeat, Ban,
 } from 'lucide-react'
 
 const quoteImages = [
@@ -173,6 +173,11 @@ function DmFlow() {
       <div className="likes-flow__node likes-flow__node--ignored">
         <Reply size={20} color="#8385a9" strokeWidth={1.7} />
         <span>0 replies</span>
+      </div>
+      <span className="dm-flow__line dm-flow__line--straight" aria-hidden="true" />
+      <div className="likes-flow__node likes-flow__node--ignored">
+        <Ban size={20} color="#8385a9" strokeWidth={1.7} />
+        <span>Blocked by individual</span>
       </div>
     </div>
   )
