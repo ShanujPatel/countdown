@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import Countdown from './Countdown'
 import Stats from './Stats'
 import MusicPlayer from './MusicPlayer'
@@ -141,14 +141,20 @@ export default function App() {
   useRandomStars()
 
   const [entered, setEntered] = useState(false)
+  const musicRef = useRef(null)
 
   const start  = new Date(2026, 4, 19, 0, 0, 0)
   const target = new Date(2026, 7, 27, 0, 0, 0)
 
+  function handleEnter() {
+    musicRef.current?.start()
+    setEntered(true)
+  }
+
   return (
     <div className="app">
-      <CoverPage open={entered} onEnter={() => setEntered(true)} />
-      <MusicPlayer />
+      <CoverPage open={entered} onEnter={handleEnter} />
+      <MusicPlayer ref={musicRef} />
       <div className="comet" aria-hidden="true" />
       <section className="hero">
         <h1>Countdown to 27/08/2026</h1>
