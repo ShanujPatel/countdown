@@ -994,3 +994,95 @@ h1 {
 .word-cloud__word--lg { font-size: 26px; }
 .word-cloud__word--md { font-size: 19px; opacity: 0.9; transform: rotate(-3deg); }
 .word-cloud__word--sm { font-size: 15px; opacity: 0.8; transform: rotate(2deg); }
+
+/* ── Cover / curtain reveal ─────────────────── */
+.cover {
+  position: fixed;
+  inset: 0;
+  z-index: 100;
+  overflow: hidden;
+}
+
+.cover--open { pointer-events: none; }
+
+.cover__panel {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 50.5%;
+  background: linear-gradient(180deg, #201f38 0%, #14131f 100%);
+  transition: transform 1s cubic-bezier(0.77, 0, 0.175, 1);
+  will-change: transform;
+  z-index: 1;
+}
+
+.cover__panel--left  { left: 0;  box-shadow: inset -1px 0 0 rgba(255, 255, 255, 0.06); }
+.cover__panel--right { right: 0; box-shadow: inset  1px 0 0 rgba(255, 255, 255, 0.06); }
+
+.cover--open .cover__panel--left  { transform: translateX(-100%); }
+.cover--open .cover__panel--right { transform: translateX(100%); }
+
+.cover__inner {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 24px;
+  text-align: center;
+  transition: opacity 0.45s ease, transform 0.45s ease;
+}
+
+.cover--open .cover__inner {
+  opacity: 0;
+  transform: scale(0.96);
+  pointer-events: none;
+}
+
+.cover__eyebrow {
+  font-size: 12px;
+  letter-spacing: 4px;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+.cover__title {
+  margin: 0;
+  font-size: clamp(40px, 12vw, 92px);
+  font-weight: 700;
+  letter-spacing: 4px;
+  color: var(--white);
+  text-shadow: 0 2px 30px rgba(251, 76, 104, 0.25);
+}
+
+.cover__sub {
+  font-size: 14px;
+  color: var(--muted);
+  margin-bottom: 28px;
+}
+
+.cover__enter {
+  padding: 14px 46px;
+  border: 1px solid rgba(255, 255, 255, 0.22);
+  border-radius: 999px;
+  background: transparent;
+  color: var(--white);
+  font-family: inherit;
+  font-size: 15px;
+  font-weight: 700;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: background 0.2s ease, border-color 0.2s ease, transform 0.15s ease;
+}
+
+.cover__enter:hover,
+.cover__enter:focus-visible {
+  background: var(--accent);
+  border-color: var(--accent);
+  outline: none;
+  transform: translateY(-2px);
+}

@@ -1,7 +1,24 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import Countdown from './Countdown'
 import Stats from './Stats'
 import MusicPlayer from './MusicPlayer'
+
+function CoverPage({ open, onEnter }) {
+  return (
+    <div className={`cover${open ? ' cover--open' : ''}`} aria-hidden={open}>
+      <div className="cover__panel cover__panel--left" aria-hidden="true" />
+      <div className="cover__panel cover__panel--right" aria-hidden="true" />
+      <div className="cover__inner">
+        <p className="cover__eyebrow">The road to</p>
+        <h1 className="cover__title">27 / 08 / 2026</h1>
+        <p className="cover__sub">A countdown — and the stats that led here.</p>
+        <button type="button" className="cover__enter" onClick={onEnter}>
+          Enter
+        </button>
+      </div>
+    </div>
+  )
+}
 
 const faviconUrl = 'https://cdn-icons-png.flaticon.com/512/4222/4222979.png'
 
@@ -123,11 +140,14 @@ export default function App() {
   useAnimatedFavicon()
   useRandomStars()
 
+  const [entered, setEntered] = useState(false)
+
   const start  = new Date(2026, 4, 19, 0, 0, 0)
   const target = new Date(2026, 7, 27, 0, 0, 0)
 
   return (
     <div className="app">
+      <CoverPage open={entered} onEnter={() => setEntered(true)} />
       <MusicPlayer />
       <div className="comet" aria-hidden="true" />
       <section className="hero">
