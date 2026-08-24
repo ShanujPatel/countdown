@@ -1,6 +1,7 @@
 import { useMemo } from 'react'
 import {
   Heart, MessageCircle, Sparkles, HeartCrack, Inbox, Percent, Reply, Send, Users, ThumbsDown, UserCheck, Crown,
+  Calendar, CalendarHeart, CalendarX, Video, Repeat,
 } from 'lucide-react'
 
 const quoteImages = [
@@ -279,6 +280,22 @@ const hingeStats = [
   },
 ]
 
+function CancelledReasonsCloud() {
+  return (
+    <div className="stat-card stat-card--cloud">
+      <div className="stat-card__header">
+        <span className="stat-card__label">Cancellation Excuses</span>
+        <CalendarX size={22} color="#8385a9" strokeWidth={1.5} />
+      </div>
+      <div className="word-cloud" aria-label="Reasons first dates were cancelled">
+        <span className="word-cloud__word word-cloud__word--lg" style={{ color: '#a78bfa' }}>Not Feeling Well</span>
+        <span className="word-cloud__word word-cloud__word--md" style={{ color: '#fb4c68' }}>Busy with Work</span>
+        <span className="word-cloud__word word-cloud__word--sm" style={{ color: '#60a5fa' }}>Family are Over</span>
+      </div>
+    </div>
+  )
+}
+
 export default function Stats() {
   const quoteImage = useMemo(
     () => quoteImages[Math.floor(Math.random() * quoteImages.length)],
@@ -308,6 +325,10 @@ export default function Stats() {
           <a href="#dilmil-stats">
             <DillLogo />
             <span>Dil Mil Stats</span>
+          </a>
+          <a href="#dates-stats">
+            <CalendarHeart size={18} color="#fb4c68" strokeWidth={1.7} />
+            <span>Dates</span>
           </a>
         </nav>
         <h2 className="stats__heading" id="hinge-stats">
@@ -367,6 +388,19 @@ export default function Stats() {
           <StatCard label="Matches" value="34" sub="connections made" icon={Sparkles} color="#f59e0b" />
           <StatCard label="Match Rate" value="0.71%" sub="match conversion" icon={Percent} color="#34d399" />
           <StatCard label="VIP Subscriptions" value="9" sub="Elite memberships bought" icon={Crown} color="#fbbf24" />
+        </div>
+        <div className="stats__divider" aria-hidden="true" />
+        <h2 className="stats__heading" id="dates-stats">
+          <CalendarHeart size={26} color="#fb4c68" strokeWidth={1.6} />
+          <span>Dates <em className="stats__heading-accent">(across all apps)</em></span>
+        </h2>
+        <div className="stats__grid">
+          <StatCard label="Total Dates" value="5" sub="dates been on" icon={Calendar} color="#a78bfa" />
+          <StatCard label="First Dates" value="2" sub="first meetups" icon={CalendarHeart} color="#fb4c68" />
+          <StatCard label="Video Dates" value="1" sub="over video call" icon={Video} color="#60a5fa" />
+          <StatCard label="Most with One Partner" value="3" sub="dates with a single match" icon={Repeat} color="#34d399" />
+          <StatCard label="First Dates Cancelled" value="5" sub="called off by the match" icon={CalendarX} color="#8385a9" />
+          <CancelledReasonsCloud />
         </div>
         <div className="stats__divider" aria-hidden="true" />
         <figure className="stats__quote">
