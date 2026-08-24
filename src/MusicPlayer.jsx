@@ -15,26 +15,35 @@ export default function MusicPlayer() {
 
     audio.volume = 0.35
 
-    const onPlay = () => setPlaying(true)
+    let removeInteractionStart = () => {}
+
+    // Once anything actually starts playback, stop listening for the first gesture
+    // (otherwise a later tap could restart music the user deliberately muted).
+    const onPlay = () => {
+      setPlaying(true)
+      removeInteractionStart()
+    }
     const onPause = () => setPlaying(false)
     const onError = () => setAvailable(false)
     audio.addEventListener('play', onPlay)
     audio.addEventListener('pause', onPause)
     audio.addEventListener('error', onError)
 
-    // Browsers block sound-on autoplay until the user interacts with the page,
-    // so try once, then fall back to starting on the first click / key press.
-    let removeInteractionStart = () => {}
+    // Mobile & most desktop browsers block sound-on autoplay until a user gesture.
+    // Try once; if blocked, start on the first interaction that ISN'T the toggle
+    // button — the button starts playback through its own onClick, and letting the
+    // global listener also fire would immediately pause it again.
     audio.play().catch(() => {
-      const start = () => {
+      const start = (event) => {
+        if (event?.target?.closest?.('.music-toggle')) return
         audio.play().catch(() => {})
-        removeInteractionStart()
       }
       window.addEventListener('pointerdown', start)
       window.addEventListener('keydown', start)
       removeInteractionStart = () => {
         window.removeEventListener('pointerdown', start)
         window.removeEventListener('keydown', start)
+        removeInteractionStart = () => {}
       }
     })
 
