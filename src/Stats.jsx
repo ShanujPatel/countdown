@@ -1,6 +1,6 @@
 import { useMemo } from 'react'
 import {
-  Heart, MessageCircle, Sparkles, HeartCrack, Inbox, Percent, Reply, Send, Users, ThumbsDown, UserCheck,
+  Heart, MessageCircle, Sparkles, HeartCrack, Inbox, Percent, Reply, Send, Users, ThumbsDown, UserCheck, Crown,
 } from 'lucide-react'
 
 const quoteImages = [
@@ -305,9 +305,9 @@ export default function Stats() {
             <ShaadiLogo />
             <span>Shaadi.com Stats</span>
           </a>
-          <a href="#coming-soon-stats">
+          <a href="#dilmil-stats">
             <DillLogo />
-            <span>Coming Soon</span>
+            <span>Dil Mil Stats</span>
           </a>
         </nav>
         <h2 className="stats__heading" id="hinge-stats">
@@ -358,13 +358,16 @@ export default function Stats() {
           <h2 className="stats__heading">Best Quotes from Hinge Chats</h2>
           <blockquote className="chat-quotes__quote">"Were you born in the UK btw"</blockquote>
         </div>
-        <h2 className="stats__heading" id="coming-soon-stats">
-          <span>Coming Soon....</span>
-          <span className="stats__heading-inline">
-            <DillLogo />
-            <span>Dill Mill Stats</span>
-          </span>
+        <h2 className="stats__heading" id="dilmil-stats">
+          <DillLogo />
+          <span>Dil Mil Stats <em className="stats__heading-accent">(since February 2019)</em></span>
         </h2>
+        <div className="stats__grid">
+          <StatCard label="Users Liked" value="4,812" sub="outgoing likes" icon={Heart} color="#fb4c68" />
+          <StatCard label="Matches" value="34" sub="connections made" icon={Sparkles} color="#f59e0b" />
+          <StatCard label="Match Rate" value="0.71%" sub="match conversion" icon={Percent} color="#34d399" />
+          <StatCard label="VIP Subscriptions" value="9" sub="Elite memberships bought" icon={Crown} color="#fbbf24" />
+        </div>
         <div className="stats__divider" aria-hidden="true" />
         <figure className="stats__quote">
           <blockquote>"We are so cooked"</blockquote>

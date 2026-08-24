@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react'
 import Countdown from './Countdown'
 import Stats from './Stats'
+import MusicPlayer from './MusicPlayer'
 
 const faviconUrl = 'https://cdn-icons-png.flaticon.com/512/4222/4222979.png'
 
@@ -127,6 +128,7 @@ export default function App() {
 
   return (
     <div className="app">
+      <MusicPlayer />
       <div className="comet" aria-hidden="true" />
       <section className="hero">
         <h1>Countdown to 27/08/2026</h1>
